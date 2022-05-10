@@ -1,0 +1,208 @@
+﻿<style>
+    * {
+        -webkit-user-select: none;
+        -user-select: none;
+        -webkit-user-drag: none;
+        -user-drag: none;
+    }
+
+    input {
+        -webkit-user-select: initial;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html,
+    body {
+        background-color: #1a1a1a;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-size: 1em;
+        overflow: hidden;
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    label,
+    input {
+        vertical-align: middle;
+    }
+
+    label,
+    input[type=checkbox],
+    input[type=radio] {
+        cursor: pointer;
+    }
+
+    input[type=radio] {
+        vertical-align: baseline;
+        margin-right: 8px;
+    }
+
+    select {
+        border: 1px solid black;
+        outline: none !important;
+        border: 1px solid black;
+        padding: 10px 10px;
+        background-color: #00a372;
+        color: #ffffff;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    option {
+        background: white;
+        color: black;
+        text-shadow: none;
+        outline: none !important;
+        padding: 2px 5px;
+        border-bottom: 1px solid black;
+    }
+
+    option:last-child {
+        border-bottom: 0;
+    }
+
+    input[disabled],
+    label[disabled],
+    button[disabled] {
+        cursor: not-allowed !important;
+        color: #bfbfbf !important;
+    }
+
+    #updating {
+        background: #02c489;
+        position: fixed;
+        top: 0;
+        left: 0px;
+        right: 0px;
+        width: 100%;
+        text-align: center;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        display: none;
+        font-size: 24px !important;
+        padding: 0;
+        border-bottom: 1px solid #02c489;
+    }
+
+    #videoCodec>label {
+        border: 1px solid #00a372;
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    #videoCodec>label:hover {
+        background-color: #00a372;
+        transition: 0.3s;
+    }
+
+    td {
+        padding: 5px 10px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    h1 {
+        text-align: center;
+        padding: 20px 0;
+        font-weight: normal;
+        font-size: 250%;
+    }
+</style>
+
+<title>Recording Senpai Extension</title>
+
+<p id="updating">Updating...</p>
+
+<article>
+    <h1>Options</h1>
+
+    <table>
+        <tr>
+            <td>
+                <label for="camera-devices">Selected camera:</label>
+                <select id="camera-devices"></select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="microphone-devices">Select microphone:</label>
+                <select id="microphone-devices"></select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label style="margin-bottom: 5px;" for="videoCodec">Video codecs:</label>
+                <div id="videoCodec" style="display: inline-block;">
+                    <label><input type="radio" checked>Default</label>
+                    <label><input type="radio">VP8</label>
+                    <label><input type="radio">VP9</label>
+                    <label><input type="radio">H264</label>
+                    <label><input type="radio">MKV</label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="videoResolutions">Camera resolutions:</label>
+                <select id="videoResolutions">
+                    <option value="1920x1080" selected>1920p</option>
+                    <option value="1280x720">720p</option>
+                    <option value="640x480">480p</option>
+                    <option value="640x360">360p</option>
+                    <option value="320x240">240p</option>
+                    <option value="default">Default</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="videoMaxFrameRates">Video frame rates:</label>
+                <select id="videoMaxFrameRates">
+                    <option selected>None</option>
+                    <option>30</option>
+                    <option>25</option>
+                    <option>15</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="bitsPerSecond">Select video bitrates:</label>
+                <select id="bitsPerSecond">
+                    <option value="default" selected>Default bitrates</option>
+                    <option value="8000000000">1 GB per second</option>
+                    <option value="800000000">100 MB per second</option>
+                    <option value="8000000">1 MB per second</option>
+                    <option value="800000">100 KB per second</option>
+                    <option value="8000">1 KB per second</option>
+                    <option value="800">100 Bytes per second</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div>
+                    <label style="margin-right: 10px;" for="fixVideoSeekingIssues">Fix video seeking issues?</label>
+                    <input type="checkbox" id="fixVideoSeekingIssues">
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</article>
+
+<script src="../RS/getAllAudioVideoDevices.js"></script>
+<script src="options.js"></script>
